@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">GIDOC</string>
+
+    <!-- Toolbar -->
+    <string name="action_licenses">Licenses</string>
+    <string name="tab_title_record">Record</string>
+    <string name="tab_title_saved_recordings">Saved Recordings</string>
+
+    <!-- Preferences -->
+    <string name="pref_high_quality_key">pref_high_quality</string>
+    <string name="pref_high_quality_title">Enable High Quality Recording</string>
+    <string name="pref_high_quality_desc">Record in CD Quality</string>
+    <string name="pref_about_key">pref_about</string>
+    <string name="pref_about_title">About</string>
+    <string name="pref_about_desc">v%s</string>
+
+    <!-- Toasts -->
+    <string name="toast_recording_start">Recording started</string>
+    <string name="toast_recording_finish">Recording saved to</string>
+    <string name="toast_file_delete">%1$s successfully deleted</string>
+    <string name="toast_file_exists">The file %1$s already exists. Please choose a different file name.</string>
+
+    <!-- Dialogs -->
+
+    <string name="no_saved_recordings_message">No saved recordings</string>
+    <string name="pause_recording_button">Pause</string>
+    <string name="resume_recording_button">Resume</string>
+    <string name="default_file_name">My Recording</string>
+    <string name="record_prompt">Tap the button to start recording</string>
+    <string name="record_in_progress">Recording</string>
+
+    <!-- Notifications -->
+    <string name="notification_recording">Recording...</string>
+    <string name="action_settings">Setting</string>
+</resources>

@@ -14,6 +14,8 @@ def transform_text(text):
     raw_utterances = []
 
     dot_split = text.split(".")
+    dot_split = [x.encode('utf8', 'surrogateescape').decode('utf8') for x in dot_split]
+
     for utterance in dot_split:
         if len(utterance):
             raw_utterances.append(utterance)

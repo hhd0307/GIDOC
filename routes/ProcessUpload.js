@@ -67,7 +67,7 @@ router.post("/", upload.fields(
 		console.log("begin	")
 		console.log(req.files);
 		console.log(req.body);
-		let {sex, age, email, region} = req.body
+		let {sex, age, email, region, regionCode, nativeLand} = req.body
 		// if (!objectId.isValid(req.body.idScript1) ||
 		// 	req.files.file1 == undefined) {
 		// 		console.log(req.body)
@@ -95,15 +95,15 @@ router.post("/", upload.fields(
 							if (err) {
 								cb(err.message);
 							} else {
-								checkUser(user, email, sex, age, region, cb);
+								checkUser(user, email, sex, age, region, regionCode, nativeLand, cb);
 							}
 						});
 					} else {
-						userDB.findUserByProp(sex, age, region, function(err, user) {
+						userDB.findUserByProp(sex, age, region, regionCode, nativeLand, function(err, user) {
 							if (err) {
 								cb(err.message);
 							} else {
-								checkUser(user, email, sex, age, region, cb);
+								checkUser(user, email, sex, age, region, regionCode, nativeLand, cb);
 							}
 						})
 					}
@@ -172,15 +172,17 @@ router.post("/", upload.fields(
 	}
 )
 
-checkUser = function(user, email,sex, age, region, callback) {
+checkUser = function(user, email,sex, age, region, regionCode, nativeLand, callback) {
 	if (user) { // had prop
 		var id = user._id;
 		if (email) {
-			if (user.region != region || user.age != age || user.sex != sex) {
+			if (user.region != region || user.age != age || user.sex != sex || user.regionCode != regionCode || user.nativeLand != nativeLand) {
 				user.region = region;
 				user.age = age;
 				user.sex = sex;
-				userDB.updateOne({email: email}, {$set: {region: region, age: age, sex: sex}}, {}, function(err, user) {
+				user.regionCode = regionCode;
+				user.nativeLand = nativeLand;
+				userDB.updateOne({email: email}, {$set: {region: region, age: age, sex: sex, regionCode: regionCode, nativeLand: nativeLand}}, {}, function(err, user) {
 					callback(null, id);
 				});
 			} else {
@@ -194,7 +196,9 @@ checkUser = function(user, email,sex, age, region, callback) {
 			email	: email,
 			region: region,
 			age	: age,
-			sex	: sex
+			sex	: sex,
+			regionCode: regionCode,
+			nativeLand: nativeLand
 		});
 		userDB.saveUser(user, function(err, doc) {
 			if (err) {

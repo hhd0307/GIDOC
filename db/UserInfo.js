@@ -19,7 +19,15 @@ var userSch= mongoose.Schema({
 	sex: {
 		type: String,
 		required: true
-	}
+	},
+	regionCode: {
+		type: String,
+		required: true
+	},
+	nativeLand: {
+		type: String,
+		required: true
+	},
 });
 
 user = module.exports= mongoose.model('user', userSch);
@@ -59,8 +67,8 @@ module.exports.findUserByEmail= function(email, callback) {
 	})
 };
 
-module.exports.findUserByProp= function(sex, age, region, callback) {
-	user.findOne( { region: region,	age: age, sex: sex}, function(err, user) {
+module.exports.findUserByProp= function(sex, age, region, regionCode, nativeLand, callback) {
+	user.findOne( { region: region,	age: age, sex: sex, regionCode: regionCode, nativeLand: nativeLand}, function(err, user) {
 		if (err) {
 			callback(errorUser.QUERY_DB_ERROR, null);
 		} else {

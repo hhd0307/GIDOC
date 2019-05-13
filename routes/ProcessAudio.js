@@ -13,13 +13,17 @@ const sendFile = (filePath, res) => {
 
 router.post('/', (req, res) => {
     let {text} = req.body;
+
+    voice_file = 'voices/20170428.htsvoice'
     async.waterfall([
         function(cb) {
             var spawn = childProcess.spawn;
             var fileName = 'output/sound_' + Math.floor(Math.random()*1000) + '-' + Date.now() + '.wav';
             var process = spawn('python3',
-            ["./python/textToSound.py", '-t',
-            text, '-o', fileName], {detached: true});
+            ["./python/textToSound.py", 
+            '-t', text, 
+            '-v', voice_file, 
+            '-o', fileName], {detached: true});
     
             var timeout = setTimeout(() => {
                 try {

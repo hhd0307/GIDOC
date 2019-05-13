@@ -90,3 +90,5 @@ typings/
 #uploads, output folder
 uploads/
 output/
+
+__pycache__/

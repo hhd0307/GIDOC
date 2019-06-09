@@ -11,7 +11,7 @@ from lib.label_format import Utterance
 DEFAULT_LABEL_OUTPUT = 'output/out.lab'
 DEFAULT_SOUND_OUTPUT = '../output/out.wav'
 DEFAULT_HTS_VOICES = 'voices/20170428.htsvoice'
-DEFAULT_SOUND_INTENSITY = 30
+DEFAULT_SOUND_INTENSITY = 3.0
 DEFAULT_SPEECH_SPEED = 1
 
 def generate_speech(lab_file_path=DEFAULT_LABEL_OUTPUT, 
